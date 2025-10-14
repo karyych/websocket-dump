@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>WebSocket Lab RFC 6455</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="bar">
+    <div class="container">
+      <h1>WebSocket Lab</h1>
+      <p class="sub">Handshake → Frames → Ping/Pong → Close (1000)</p>
+    </div>
+  </header>
+
+  <main class="container grid">
+    <section class="card">
+      <h2>Подключение</h2>
+      <label>Endpoint</label>
+      <input id="endpoint" value="ws://127.0.0.1:8765/chat" />
+      <div class="row">
+        <button id="btnConnect" type="button">Подключиться</button>
+        <button id="btnDisconnect" type="button" class="ghost">Отключиться (1000)</button>
+      </div>
+      <p id="status" class="status">Статус: <span>disconnected</span></p>
+    </section>
+
+    <section class="card">
+      <h2>Отправка</h2>
+      <label>Текст</label>
+      <input id="txt" placeholder="hello from URFU" />
+      <div class="row">
+        <button id="btnSendText" type="button">Send Text</button>
+        <button id="btnSendLong" type="button" class="ghost" title="130B → ветка длины 126">Send Long (130B)</button>
+        <button id="btnSendBin" type="button" class="ghost">Send Binary (32B)</button>
+        <button id="btnPing" type="button" class="ghost">Ping (см. примечание)</button>
+      </div>
+      <small class="hint">
+        Примечание: браузер не умеет вручную отправлять Ping; сервер шлёт их каждые 20 сек, смотри в Wireshark.
+      </small>
+    </section>
+
+    <section class="card wide">
+      <h2>Лог</h2>
+      <pre id="log" class="log"></pre>
+      <div class="row right">
+        <button id="btnClear" type="button" class="ghost">Очистить</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bar foot">
+    <div class="container">
+      Разработано в URFU
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
