@@ -21,8 +21,25 @@ jobs:
     - name: Install dependencies
       run: go mod download
         
+    - name: Run golangci-lint
+      uses: golangci/golangci-lint-action@v3
+      with:
+        version: latest
+        
     - name: Build
       run: go build -v ./...
       
     - name: Test
       run: go test -v ./...
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Build Docker image
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        push: false
+        tags: websocket-dump:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
