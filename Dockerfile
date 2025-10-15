@@ -1,5 +1,5 @@
 # 1) билд
-FROM golang:1.21.4 AS build
+FROM golang:1.20 AS build
 
 # Установка рабочей директории
 WORKDIR /app
