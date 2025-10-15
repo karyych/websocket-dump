@@ -4,11 +4,4 @@ run:
 linters:
   enable:
     - gofmt
-    - golint
     - govet
-    - errcheck
-  disable:
-    - deadcode
-    - unused
-    - structcheck
-    - staticcheck
