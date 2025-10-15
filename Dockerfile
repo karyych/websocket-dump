@@ -1,10 +1,17 @@
 # 1) билд
-FROM golang:1.21-alpine AS build
+FROM golang:1.21.4 AS build
+
+# Установка рабочей директории
 WORKDIR /app
+
+# Копирование и проверка зависимостей
 COPY go.mod go.sum ./
-RUN go mod verify && \
-    go mod download
+RUN go mod download && go mod verify
+
+# Копирование исходного кода
 COPY . .
+
+# Сборка приложения
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o ws-server ./server.go
 
 # 2) рантайм
