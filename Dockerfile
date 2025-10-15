@@ -1,5 +1,8 @@
 # 1) билд
-FROM golang:1.20 AS build
+FROM golang:1.20-alpine AS build
+
+# Установка необходимых инструментов для сборки
+RUN apk add --no-cache git
 
 # Установка рабочей директории
 WORKDIR /app
@@ -15,7 +18,7 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -v -o ws-server ./server.go
 
 # 2) рантайм
-FROM gcr.io/distroless/base-debian12
+FROM gcr.io/distroless/static-debian12:nonroot
 WORKDIR /app
 COPY --from=build /app/ws-server /app/ws-server
 COPY static /app/static
