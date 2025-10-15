@@ -26,7 +26,7 @@ jobs:
       uses: golangci/golangci-lint-action@v3
       with:
         version: latest
-        args: --disable=deadcode --disable-all --enable=govet --enable=errcheck --enable=staticcheck --disable=SA1019 --timeout=5m
+        args: --disable-all --enable=govet,errcheck,staticcheck --timeout=5m
         skip-pkg-cache: true
         skip-build-cache: true
         skip-cache: true
