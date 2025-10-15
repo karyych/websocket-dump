@@ -1,3 +1,6 @@
+run:
+  timeout: 5m
+
 linters:
   enable:
     - gofmt
@@ -5,15 +8,7 @@ linters:
     - govet
     - errcheck
   disable:
-    - deadcode # временно отключаем более строгие проверки
+    - deadcode
     - unused
     - structcheck
-
-run:
-  deadline: 5m
-
-issues:
-  exclude-rules:
-    - path: _test\.go
-      linters:
-        - errcheck
+    - staticcheck
