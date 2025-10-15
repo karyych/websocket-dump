@@ -1,8 +1,8 @@
 # 1) билд
-FROM golang:1.20-alpine AS build
+FROM golang:1.22.4-alpine AS build
 
 # Установка необходимых инструментов для сборки
-RUN apk add --no-cache git
+RUN apk add --no-cache git ca-certificates tzdata
 
 # Установка рабочей директории
 WORKDIR /app
